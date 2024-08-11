@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ConsultingSite/static/css/main.36222828.css",
+    "main.js": "/ConsultingSite/static/js/main.94ffb3ef.js",
+    "index.html": "/ConsultingSite/index.html",
+    "main.36222828.css.map": "/ConsultingSite/static/css/main.36222828.css.map",
+    "main.94ffb3ef.js.map": "/ConsultingSite/static/js/main.94ffb3ef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36222828.css",
+    "static/js/main.94ffb3ef.js"
+  ]
+}
