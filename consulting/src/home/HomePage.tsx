@@ -106,16 +106,16 @@ export function HomePage(): React.ReactElement {
   const testimonials = [
     {
       quote:
-        "Their AI implementation transformed our business operations completely. Highly recommended!",
-      author: "Sarah Johnson",
-      position: "CTO, Enterprise Retail Corp",
+        "When I thought all hope was lost on our impossible journey, this team carried the burden when I could not. They guided us through the darkest paths of Mount Deployment with unwavering dedication.",
+      author: "Frodo Baggins",
+      position: "Ring Bearer, Fellowship of the Ring",
       image: frodo,
     },
     {
       quote:
-        "The team delivered beyond our expectations, with measurable ROI within just 3 months.",
-      author: "Michael Chen",
-      position: "Director of Innovation, Tech Solutions",
+        "A wizard arrives precisely when he means to, but your team delivered the solution earlier than expected! In the face of great peril and complex challenges, they illuminated the way forward with both wisdom and practical magic.",
+      author: "Gandalf the Grey",
+      position: "Chief Magical Advisor, White Council",
       image: gandalf,
     },
   ];
