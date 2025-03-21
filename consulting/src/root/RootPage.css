@@ -1,0 +1,46 @@
+/* Custom styles for the RootPage component */
+:root {
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --background-dark: #111827;
+  --card-background: #1f2937;
+  --text-light: #f3f4f6;
+  --text-muted: #9ca3af;
+}
+
+/* Override Cloudscape theme for dark mode */
+body {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
+/* Custom styling for navigation */
+[data-awsui-focus-visible="true"] {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+/* Hover effects for interactive elements */
+button:hover, 
+a:hover,
+[role="button"]:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* Animation for page transitions */
+.awsui-motion-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .awsui-app-layout__navigation {
+    width: 100%;
+    max-width: 100%;
+  }
+} 
