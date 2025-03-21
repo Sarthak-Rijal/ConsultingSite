@@ -4,7 +4,6 @@ import {
   Container,
   ContentLayout,
   Grid,
-  Header,
   SpaceBetween,
   TextContent,
   ColumnLayout,
@@ -100,6 +99,20 @@ export function HomePage(): React.ReactElement {
  ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝    
 `}
               </pre>
+              <pre className="lightbulb-art">
+                {`
+  ..---..
+ /       \\
+|         |
+:         ;
+ \\  \\~/  /
+  \`, Y ,\'
+   |_|_|
+   |===|
+   |===|
+    \\_/
+  `}
+              </pre>
               {/* eslint-enable no-useless-escape */}
             </div>
           </div>
@@ -150,14 +163,6 @@ export function HomePage(): React.ReactElement {
       {/* Featured Projects/Services */}
       <Container
         className={`projects-container ${animationsLoaded ? "animate-projects" : ""}`}
-        header={
-          <Header
-            variant="h2"
-            description="Comprehensive AI solutions for your business"
-          >
-            Our Services
-          </Header>
-        }
       >
         <Grid
           gridDefinition={[
@@ -184,7 +189,6 @@ export function HomePage(): React.ReactElement {
       {/* Testimonials */}
       <Container
         className={`testimonials-container ${animationsLoaded ? "animate-testimonials" : ""}`}
-        header={<Header variant="h2">What Our Clients Say</Header>}
       >
         <ColumnLayout columns={testimonials.length} variant="text-grid">
           {testimonials.map((testimonial, index) => (

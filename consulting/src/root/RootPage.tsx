@@ -7,7 +7,7 @@ import "./RootPage.css";
 export function RootPage(): React.ReactElement {
   const identity = {
     href: "/",
-    title: "Synaptic Solutions",
+    title: "",
   };
 
   return (
@@ -17,7 +17,7 @@ export function RootPage(): React.ReactElement {
         utilities={[
           {
             type: "menu-dropdown",
-            text: "Contact",
+            text: "Contact Us",
             items: [
               { id: "email", text: "Email: info@aiconsulting.com" },
               { id: "phone", text: "Phone: +1 (555) 123-4567" },
