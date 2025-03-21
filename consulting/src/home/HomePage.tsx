@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-undef */
+import React, { useEffect, useState, useRef } from "react";
 import {
   Button,
   Container,
@@ -13,14 +14,69 @@ import frodo from "../assets/frodo.png";
 import gandalf from "../assets/gandalf.jpg";
 import { ContactForm } from "../components/ContactForm";
 
+// Define a type for the sections
+type SectionKey = "hero" | "projects" | "testimonials" | "cta";
+
 export function HomePage(): React.ReactElement {
   // State to control animations
   const [animationsLoaded, setAnimationsLoaded] = useState(false);
+  const [sectionsInView, setSectionsInView] = useState<{
+    [key in SectionKey]: boolean;
+  }>({
+    hero: false,
+    projects: false,
+    testimonials: false,
+    cta: false,
+  });
 
-  // Trigger animations after component mounts
+  // Refs for each section
+  const heroRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  // Trigger initial animations after component mounts
   useEffect(() => {
     setAnimationsLoaded(true);
+    // Set hero section to visible immediately
+    setSectionsInView((prev) => ({ ...prev, hero: true }));
   }, []);
+
+  // Handle scroll to detect when sections come into view
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY + window.innerHeight * 0.8; // Trigger animation a bit earlier
+
+    // Check each section
+    [
+      { ref: projectsRef, key: "projects" as SectionKey },
+      { ref: testimonialsRef, key: "testimonials" as SectionKey },
+      { ref: ctaRef, key: "cta" as SectionKey },
+    ].forEach(({ ref, key }) => {
+      if (ref.current && !sectionsInView[key]) {
+        const element = ref.current;
+        const position = element.getBoundingClientRect().top + window.scrollY;
+
+        if (scrollPosition > position) {
+          setSectionsInView((prev) => ({ ...prev, [key]: true }));
+        }
+      }
+    });
+
+    // Remove scroll listener if all sections are in view
+    if (Object.values(sectionsInView).every((value) => value)) {
+      window.removeEventListener("scroll", handleScroll);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    // Trigger once on mount to check initial positions
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [sectionsInView]);
 
   // Sample projects for the showcase section
   const projects = [
@@ -67,22 +123,23 @@ export function HomePage(): React.ReactElement {
   return (
     <ContentLayout>
       {/* Hero Section */}
-      <Container
-        className={`hero-container ${animationsLoaded ? "animate-hero" : ""}`}
-      >
-        <Grid
-          gridDefinition={[
-            { colspan: { default: 12, xxs: 12, xs: 6 } },
-            { colspan: { default: 12, xxs: 12, xs: 6 } },
-          ]}
+      <div ref={heroRef}>
+        <Container
+          className={`hero-container ${animationsLoaded ? "animate-hero" : ""}`}
         >
-          <div
-            className={`hero-image ${animationsLoaded ? "animate-hero-image" : ""}`}
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xxs: 12, xs: 6 } },
+              { colspan: { default: 12, xxs: 12, xs: 6 } },
+            ]}
           >
-            <div className="ascii-art-container">
-              {/* eslint-disable no-useless-escape */}
-              <pre className="ascii-art">
-                {`
+            <div
+              className={`hero-image ${animationsLoaded ? "animate-hero-image" : ""}`}
+            >
+              <div className="ascii-art-container">
+                {/* eslint-disable no-useless-escape */}
+                <pre className="ascii-art">
+                  {`
                                                               
  ███████╗██╗   ██╗███╗   ██╗ █████╗ ██████╗ ████████╗██╗ ██████╗ 
  ██╔════╝╚██╗ ██╔╝████╗  ██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝ 
@@ -98,130 +155,139 @@ export function HomePage(): React.ReactElement {
  ███████║╚██████╔╝███████╗╚██████╔╝   ██║   ██║╚██████╔╝██║ ╚████║███████║    
  ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝    
 `}
-              </pre>
-              <pre className="lightbulb-art">
-                {`
-  ..---..
- /       \\
-|         |
-:         ;
- \\  \\~/  /
-  \`, Y ,\'
-   |_|_|
-   |===|
-   |===|
-    \\_/
+                </pre>
+                <pre className="lightbulb-art">
+                  {`
+     :
+ '.  _  .'
+-=  (~)  =-   
+ .'  #  '.
   `}
-              </pre>
-              {/* eslint-enable no-useless-escape */}
-            </div>
-          </div>
-          <div
-            className={`hero-content ${animationsLoaded ? "animate-hero-content" : ""}`}
-          >
-            <SpaceBetween size="l">
-              <TextContent>
-                <p className="hero-description">
-                  Our team of ex-Amazon and ex-Microsoft software engineers and
-                  product managers brings 10+ years of industry experience to
-                  your AI challenges. We specialize in:
-                </p>
-                <ul className="hero-list">
-                  <li>
-                    <span className="highlight">
-                      Deep Requirements Analysis
-                    </span>{" "}
-                    — Understanding your business needs before writing a single
-                    line of code
-                  </li>
-                  <li>
-                    <span className="highlight">Continuous Delivery</span> —
-                    Implementing feedback loops that ensure your solution
-                    evolves with your needs
-                  </li>
-                  <li>
-                    <span className="highlight">
-                      Enterprise-grade Monitoring
-                    </span>{" "}
-                    — Proactive error detection and alerting systems that
-                    prevent downtime
-                  </li>
-                  <li>
-                    <span className="highlight">Dedicated Support</span> —
-                    Ongoing maintenance and optimization to maximize your ROI
-                  </li>
-                </ul>
-              </TextContent>
-              <div className="cta-buttons right-aligned">
-                <Button variant="primary">Schedule a Consultation</Button>
+                </pre>
+                {/* eslint-enable no-useless-escape */}
               </div>
-            </SpaceBetween>
-          </div>
-        </Grid>
-      </Container>
+            </div>
+            <div
+              className={`hero-content ${sectionsInView.hero ? "in-view" : "scroll-animate"}`}
+            >
+              <SpaceBetween size="l">
+                <TextContent>
+                  <p className="hero-description">
+                    Our small team of 10+ years of working in the MAANG
+                    experienced in shipping high quality bespoke software
+                    solutions to help your business needs. We specialize in
+                    building high quality AI software solutions to help your
+                    business needs.
+                  </p>
+
+                  <h2 className="tenets-header">
+                    <span className="highlight">Our</span>{" "}
+                    <span className="highlight">Tenets</span>
+                  </h2>
+
+                  <ul className="hero-list">
+                    <li>
+                      <span className="highlight">
+                        Deep Requirements Analysis
+                      </span>{" "}
+                      — Understanding your business needs before writing a
+                      single line of code
+                    </li>
+                    <li>
+                      <span className="highlight">Continuous Delivery</span> —
+                      Implementing feedback loops that ensure your solution
+                      evolves with your needs
+                    </li>
+                    <li>
+                      <span className="highlight">
+                        Enterprise-grade Monitoring
+                      </span>{" "}
+                      — Proactive error detection and alerting systems that
+                      prevent downtime
+                    </li>
+                    <li>
+                      <span className="highlight">Dedicated Support</span> —
+                      Ongoing maintenance and optimization to maximize your ROI
+                    </li>
+                  </ul>
+                </TextContent>
+                <div className="cta-buttons right-aligned">
+                  <Button variant="primary">Schedule a Consultation</Button>
+                </div>
+              </SpaceBetween>
+            </div>
+          </Grid>
+        </Container>
+      </div>
 
       {/* Featured Projects/Services */}
-      <Container
-        className={`projects-container ${animationsLoaded ? "animate-projects" : ""}`}
-      >
-        <Grid
-          gridDefinition={[
-            { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-            { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-            { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-            { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-          ]}
+      <div ref={projectsRef}>
+        <Container
+          className={`projects-container ${sectionsInView.projects ? "in-view" : "scroll-animate"}`}
         >
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`service-project-card ${animationsLoaded ? `animate-project-card animate-project-${index + 1}` : ""}`}
-            >
-              <div className="service-project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
+              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
+              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
+              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
+            ]}
+          >
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className={`service-project-card ${sectionsInView.projects ? `animate-project-${index + 1}` : ""}`}
+              >
+                <div className="service-project-content">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </Grid>
-      </Container>
+            ))}
+          </Grid>
+        </Container>
+      </div>
 
       {/* Testimonials */}
-      <Container
-        className={`testimonials-container ${animationsLoaded ? "animate-testimonials" : ""}`}
-      >
-        <ColumnLayout columns={testimonials.length} variant="text-grid">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className={`testimonial-card ${animationsLoaded ? `animate-project-card animate-testimonial-${index + 1}` : ""}`}
-            >
-              <div className="testimonial-content">
-                <p className="quote">{testimonial.quote}</p>
-                <div className="author-info">
-                  <img src={testimonial.image} className="author-image" />
-                  <div>
-                    <p className="author-name">{testimonial.author}</p>
-                    <p className="author-position">{testimonial.position}</p>
+      <div ref={testimonialsRef}>
+        <Container
+          className={`testimonials-container ${sectionsInView.testimonials ? "in-view" : "scroll-animate"}`}
+        >
+          <ColumnLayout columns={testimonials.length} variant="text-grid">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className={`testimonial-card ${animationsLoaded ? `animate-project-card animate-testimonial-${index + 1}` : ""}`}
+              >
+                <div className="testimonial-content">
+                  <p className="quote">{testimonial.quote}</p>
+                  <div className="author-info">
+                    <img src={testimonial.image} className="author-image" />
+                    <div>
+                      <p className="author-name">{testimonial.author}</p>
+                      <p className="author-position">{testimonial.position}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </ColumnLayout>
-      </Container>
+            ))}
+          </ColumnLayout>
+        </Container>
+      </div>
 
       {/* Call to Action */}
-      <Container
-        className={`cta-container ${animationsLoaded ? "animate-cta" : ""}`}
-      >
-        <div className="cta-content">
-          <h2>Ready to transform your business with AI?</h2>
-          <p>Get in touch with our team to discuss your project.</p>
+      <div ref={ctaRef}>
+        <Container
+          className={`cta-container ${sectionsInView.cta ? "in-view" : "scroll-animate"}`}
+        >
+          <div className="cta-content">
+            <h2>Ready to transform your business with AI?</h2>
+            <p>Get in touch with our team to discuss your project.</p>
 
-          <ContactForm />
-        </div>
-      </Container>
+            <ContactForm />
+          </div>
+        </Container>
+      </div>
     </ContentLayout>
   );
 }

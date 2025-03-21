@@ -23,13 +23,13 @@ button:hover {
 
 /* Custom link styles */
 a {
-  color: #3b82f6;
+  color: #f97316;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #2563eb;
+  color: #ea580c;
   text-decoration: underline;
 }
 
@@ -104,7 +104,7 @@ a:hover {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #f97316;
 }
 
 @keyframes App-logo-spin {

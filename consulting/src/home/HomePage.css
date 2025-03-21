@@ -21,6 +21,9 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .hero-image {
@@ -115,7 +118,7 @@
 
 .highlight {
   color: #fb923c;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .cta-buttons {
@@ -143,10 +146,10 @@
   font-family: monospace;
   font-size: 0.6rem;
   line-height: 1;
-  color: #f97316;
+  color: #60a5fa;
   white-space: pre;
   margin: 0 auto;
-  text-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+  text-shadow: 0 0 5px rgba(96, 165, 250, 0.5);
   overflow: visible;
   max-width: 100%;
   text-align: center;
@@ -167,9 +170,9 @@
 .ascii-art-container:hover .ascii-art {
   color: #fb923c;
   text-shadow: 
-    0 0 8px rgba(251, 146, 60, 0.6),
-    0 0 15px rgba(249, 115, 22, 0.4),
-    0 0 20px rgba(234, 88, 12, 0.2);
+    0 0 5px rgba(251, 146, 60, 0.4),
+    0 0 10px rgba(249, 115, 22, 0.3),
+    0 0 15px rgba(234, 88, 12, 0.2);
   animation: 
     logoFloat 4s ease-in-out infinite,
     logoHoverPulse 3s infinite ease-in-out;
@@ -250,43 +253,37 @@
 .testimonial-card {
   background-color: #1f2937;
   border-radius: 8px;
-  padding: 1.5rem;
+  overflow: hidden;
   height: 100%;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(31, 41, 55, 0.2);
 }
 
 .testimonial-card:hover {
-  transform: translateY(-15px) scale(1.03);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  border-color: rgba(249, 115, 22, 0.3);
 }
 
-.testimonial-card:hover::before {
-  content: '"';
-  position: absolute;
-  top: -20px;
-  right: 20px;
-  font-size: 120px;
-  color: rgba(59, 130, 246, 0.1);
-  font-family: Georgia, serif;
-}
-
-.testimonial-card:hover .author-image {
-  transform: scale(1.1);
-  border: 3px solid #3b82f6;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+.testimonial-content {
+  padding: 1.5rem;
 }
 
 .quote {
   font-style: italic;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  color: #e5e7eb;
+  border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+  padding-bottom: 1rem;
 }
 
 .author-info {
   display: flex;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .author-image {
@@ -296,18 +293,33 @@
   margin-right: 1rem;
   object-fit: cover;
   border: 2px solid rgba(249, 115, 22, 0.3);
-  transition: all 0.3s ease;
+  transition: transform 0.4s ease, border 0.4s ease;
 }
 
 .author-name {
   font-weight: bold;
   margin: 0;
+  color: #f3f4f6;
+  transition: color 0.4s ease;
 }
 
 .author-position {
   margin: 0;
   font-size: 0.9rem;
-  opacity: 0.8;
+  color: #9ca3af;
+}
+
+.testimonial-card:hover .author-image {
+  transform: scale(1.1);
+  border-color: #f97316;
+}
+
+.testimonial-card:hover .quote {
+  color: #fb923c;
+}
+
+.testimonial-card:hover .author-name {
+  color: #f97316;
 }
 
 /* Call to Action section */
@@ -320,6 +332,9 @@
 .cta-content {
   padding: 3rem;
   text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .cta-content h2 {
@@ -699,7 +714,6 @@
     0 0 30px rgba(251, 191, 36, 0.4);
   opacity: 1;
   transform: translateX(-50%) scale(1);
-  animation: bulbFlicker 4s infinite ease-in-out;
 }
 
 /* Special styling for the filament part (\~/) */
@@ -711,88 +725,249 @@
     0 0 35px rgba(251, 191, 36, 0.6);
 }
 
-/* Add a warm glow effect around the light bulb */
+/* Adjust the glow effect to be on top of the bulb */
 .ascii-art-container:hover::after {
   content: '';
   position: absolute;
-  bottom: -5em; /* Adjusted for the new art */
+  bottom: -8em; /* Move it lower to position it directly below the bulb */
   left: 50%;
-  width: 120px;
-  height: 120px;
+  width: 120px; /* Adjust width as needed */
+  height: 120px; /* Adjust height as needed */
   background: radial-gradient(
     circle, 
-    rgba(254, 243, 199, 0.5) 0%, 
-    rgba(251, 191, 36, 0.3) 40%, 
+    rgba(254, 243, 199, 0.3) 0%,
+    rgba(251, 191, 36, 0.2) 40%,
     rgba(251, 191, 36, 0) 70%
   );
   border-radius: 50%;
+  z-index: 1; /* Ensure it is above the bulb */
+  transform: translateX(-50%); /* Center it horizontally */
+}
+
+/* Override primary button colors */
+button[data-variant="primary"],
+.awsui-button[data-variant="primary"],
+.awsui-button-primary {
+  background-color: #f97316 !important;
+  border-color: #f97316 !important;
+  color: #ffffff !important;
+}
+
+button[data-variant="primary"]:hover,
+.awsui-button[data-variant="primary"]:hover,
+.awsui-button-primary:hover {
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+}
+
+button[data-variant="primary"]:active,
+.awsui-button[data-variant="primary"]:active,
+.awsui-button-primary:active {
+  background-color: #c2410c !important;
+  border-color: #c2410c !important;
+}
+
+button[data-variant="primary"]:focus,
+.awsui-button[data-variant="primary"]:focus,
+.awsui-button-primary:focus {
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.5) !important;
+}
+
+/* Update specific button instances */
+.cta-buttons button[data-variant="primary"],
+.cta-buttons .awsui-button-primary {
+  background-color: #f97316 !important;
+  border-color: #f97316 !important;
+}
+
+.cta-buttons button[data-variant="primary"]:hover,
+.cta-buttons .awsui-button-primary:hover {
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+}
+
+.hero-content button[data-variant="primary"],
+.hero-content .awsui-button-primary {
+  background-color: #f97316 !important;
+  border-color: #f97316 !important;
+}
+
+.hero-content button[data-variant="primary"]:hover,
+.hero-content .awsui-button-primary:hover {
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+}
+
+.contact-form-container button[data-variant="primary"],
+.contact-form-container .awsui-button-primary {
+  background-color: #f97316 !important;
+  border-color: #f97316 !important;
+}
+
+.contact-form-container button[data-variant="primary"]:hover,
+.contact-form-container .awsui-button-primary:hover {
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+}
+
+.service-project-card button[data-variant="primary"],
+.service-project-card .awsui-button-primary {
+  background-color: #f97316 !important;
+  border-color: #f97316 !important;
+}
+
+.service-project-card button[data-variant="primary"]:hover,
+.service-project-card .awsui-button-primary:hover {
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Slightly move up */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add a smooth scroll effect */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Scroll animation */
+.scroll-animate {
+  opacity: 0; /* Start hidden */
+  transform: translateY(20px); /* Slightly move up */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+/* When the element is in view */
+.scroll-animate.in-view {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Move to original position */
+}
+
+/* Scroll animation for all sections */
+.projects-container.scroll-animate,
+.testimonials-container.scroll-animate,
+.cta-container.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.projects-container.in-view,
+.testimonials-container.in-view,
+.cta-container.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add staggered delays for child elements */
+.projects-container.in-view .service-project-card:nth-child(1) { transition-delay: 0.1s; }
+.projects-container.in-view .service-project-card:nth-child(2) { transition-delay: 0.2s; }
+.projects-container.in-view .service-project-card:nth-child(3) { transition-delay: 0.3s; }
+.projects-container.in-view .service-project-card:nth-child(4) { transition-delay: 0.4s; }
+
+.testimonials-container.in-view .testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+.testimonials-container.in-view .testimonial-card:nth-child(2) { transition-delay: 0.2s; }
+
+/* Improve the container animation */
+.projects-container.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.projects-container.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Update the card animations to only start after container is visible */
+.service-project-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Apply staggered animations only when container is in view */
+.projects-container.in-view .service-project-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-container.in-view .animate-project-1 { transition-delay: 0.1s; }
+.projects-container.in-view .animate-project-2 { transition-delay: 0.2s; }
+.projects-container.in-view .animate-project-3 { transition-delay: 0.3s; }
+.projects-container.in-view .animate-project-4 { transition-delay: 0.4s; }
+
+/* Apply animations when container is in view */
+.testimonials-container.in-view .testimonial-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTA section animation */
+.cta-container.in-view .cta-content {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+/* Add a subtle glow effect to all cards and containers except hero */
+.projects-container,
+.service-project-card,
+.testimonials-container,
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle gradient background glow */
+.projects-container::before,
+.service-project-card::before,
+.testimonials-container::before,
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, rgba(251, 146, 60, 0.02) 100%);
   z-index: -1;
-  transform: translateX(-50%);
-  animation: bulbGlow 3s infinite ease-in-out;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
-/* Bulb glow animation */
-@keyframes bulbGlow {
-  0% {
-    opacity: 0.7;
-    transform: translateX(-50%) scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.1);
-    background: radial-gradient(
-      circle, 
-      rgba(254, 243, 199, 0.6) 0%, 
-      rgba(251, 191, 36, 0.4) 40%, 
-      rgba(251, 191, 36, 0.1) 70%
-    );
-  }
-  100% {
-    opacity: 0.7;
-    transform: translateX(-50%) scale(0.9);
-  }
+/* Enhance the glow effect on hover */
+.service-project-card:hover::before,
+.testimonial-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(251, 146, 60, 0.05) 100%);
 }
 
-/* Subtle flickering effect for the bulb */
-@keyframes bulbFlicker {
-  0%, 100% {
-    opacity: 1;
-    text-shadow: 
-      0 0 10px rgba(251, 191, 36, 0.8),
-      0 0 20px rgba(251, 191, 36, 0.6),
-      0 0 30px rgba(251, 191, 36, 0.4);
-  }
-  3% {
-    opacity: 0.9;
-    text-shadow: 
-      0 0 8px rgba(251, 191, 36, 0.7),
-      0 0 16px rgba(251, 191, 36, 0.5);
-  }
-  6% {
-    opacity: 1;
-    text-shadow: 
-      0 0 10px rgba(251, 191, 36, 0.8),
-      0 0 20px rgba(251, 191, 36, 0.6),
-      0 0 30px rgba(251, 191, 36, 0.4);
-  }
-  70% {
-    opacity: 1;
-    text-shadow: 
-      0 0 10px rgba(251, 191, 36, 0.8),
-      0 0 20px rgba(251, 191, 36, 0.6),
-      0 0 30px rgba(251, 191, 36, 0.4);
-  }
-  73% {
-    opacity: 0.95;
-    text-shadow: 
-      0 0 8px rgba(251, 191, 36, 0.7),
-      0 0 16px rgba(251, 191, 36, 0.5);
-  }
-  76% {
-    opacity: 1;
-    text-shadow: 
-      0 0 10px rgba(251, 191, 36, 0.8),
-      0 0 20px rgba(251, 191, 36, 0.6),
-      0 0 30px rgba(251, 191, 36, 0.4);
-  }
+/* Add a subtle box shadow for the glow effect */
+.projects-container,
+.service-project-card,
+.testimonials-container,
+.testimonial-card {
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 0 15px rgba(249, 115, 22, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Enhance shadow on hover */
+.service-project-card:hover,
+.testimonial-card:hover {
+  box-shadow: 
+    0 8px 15px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(249, 115, 22, 0.2);
 } 
