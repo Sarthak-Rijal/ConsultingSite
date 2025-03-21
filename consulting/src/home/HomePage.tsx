@@ -173,7 +173,14 @@ export function HomePage(): React.ReactElement {
               <SpaceBetween size="l">
                 <TextContent>
                   <p className="hero-description">
-                    Founded by a team of senior engineers with 10+ years of experience at Meta, Amazon, Apple, Netflix, and Google, we bring Silicon Valley expertise to your business challenges. Our collective experience spans AI infrastructure, cloud architecture, and enterprise-scale applications that serve millions of users daily. We don&#39;t just write code — we craft solutions that delight users while driving measurable business outcomes.
+                    Founded by a team of senior engineers with 10+ years of
+                    experience at Meta, Amazon, Apple, Netflix, and Google, we
+                    bring Silicon Valley expertise to your business challenges.
+                    Our collective experience spans AI infrastructure, cloud
+                    architecture, and enterprise-scale applications that serve
+                    millions of users daily. We don&#39;t just write code — we
+                    craft solutions that delight users while driving measurable
+                    business outcomes.
                   </p>
 
                   <h2 className="tenets-header">
@@ -186,21 +193,27 @@ export function HomePage(): React.ReactElement {
                       <span className="highlight">
                         Relentless Customer Focus
                       </span>{" "}
-                      — We start with your business needs and work backwards, ensuring every line of code drives value for your users and your bottom line
+                      — We start with your business needs and work backwards,
+                      ensuring every line of code drives value for your users
+                      and your bottom line
                     </li>
                     <li>
-                      <span className="highlight">Technical Excellence</span>{" "}
-                      — Leveraging MAANG-level engineering practices: robust architecture, comprehensive testing, and scalable infrastructure that grows with your business
+                      <span className="highlight">Technical Excellence</span> —
+                      Leveraging MAANG-level engineering practices: robust
+                      architecture, comprehensive testing, and scalable
+                      infrastructure that grows with your business
                     </li>
                     <li>
-                      <span className="highlight">
-                        Human-Centered Design
-                      </span>{" "}
-                      — Creating intuitive, delightful interfaces that users love, combining data-driven insights with thoughtful interaction design
+                      <span className="highlight">Human-Centered Design</span> —
+                      Creating intuitive, delightful interfaces that users love,
+                      combining data-driven insights with thoughtful interaction
+                      design
                     </li>
                     <li>
-                      <span className="highlight">Long-Term Partnership</span>{" "}
-                      — Beyond launch, we provide ongoing optimization, proactive monitoring, and strategic guidance to ensure sustainable success
+                      <span className="highlight">Long-Term Partnership</span> —
+                      Beyond launch, we provide ongoing optimization, proactive
+                      monitoring, and strategic guidance to ensure sustainable
+                      success
                     </li>
                   </ul>
                 </TextContent>
@@ -215,6 +228,7 @@ export function HomePage(): React.ReactElement {
 
       {/* Featured Projects/Services */}
       <div ref={projectsRef}>
+        <h2 className="section-title">Our Approach</h2>
         <Container
           className={`projects-container ${sectionsInView.projects ? "in-view" : "scroll-animate"}`}
         >
@@ -243,6 +257,7 @@ export function HomePage(): React.ReactElement {
 
       {/* Testimonials */}
       <div ref={testimonialsRef}>
+        <h2 className="section-title">Client Experiences</h2>
         <Container
           className={`testimonials-container ${sectionsInView.testimonials ? "in-view" : "scroll-animate"}`}
         >
