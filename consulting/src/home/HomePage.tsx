@@ -173,11 +173,7 @@ export function HomePage(): React.ReactElement {
               <SpaceBetween size="l">
                 <TextContent>
                   <p className="hero-description">
-                    Our small team of 10+ years of working in the MAANG
-                    experienced in shipping high quality bespoke software
-                    solutions to help your business needs. We specialize in
-                    building high quality AI software solutions to help your
-                    business needs.
+                    Founded by a team of senior engineers with 10+ years of experience at Meta, Amazon, Apple, Netflix, and Google, we bring Silicon Valley expertise to your business challenges. Our collective experience spans AI infrastructure, cloud architecture, and enterprise-scale applications that serve millions of users daily. We don&#39;t just write code — we craft solutions that delight users while driving measurable business outcomes.
                   </p>
 
                   <h2 className="tenets-header">
@@ -188,26 +184,23 @@ export function HomePage(): React.ReactElement {
                   <ul className="hero-list">
                     <li>
                       <span className="highlight">
-                        Deep Requirements Analysis
+                        Relentless Customer Focus
                       </span>{" "}
-                      — Understanding your business needs before writing a
-                      single line of code
+                      — We start with your business needs and work backwards, ensuring every line of code drives value for your users and your bottom line
                     </li>
                     <li>
-                      <span className="highlight">Continuous Delivery</span> —
-                      Implementing feedback loops that ensure your solution
-                      evolves with your needs
+                      <span className="highlight">Technical Excellence</span>{" "}
+                      — Leveraging MAANG-level engineering practices: robust architecture, comprehensive testing, and scalable infrastructure that grows with your business
                     </li>
                     <li>
                       <span className="highlight">
-                        Enterprise-grade Monitoring
+                        Human-Centered Design
                       </span>{" "}
-                      — Proactive error detection and alerting systems that
-                      prevent downtime
+                      — Creating intuitive, delightful interfaces that users love, combining data-driven insights with thoughtful interaction design
                     </li>
                     <li>
-                      <span className="highlight">Dedicated Support</span> —
-                      Ongoing maintenance and optimization to maximize your ROI
+                      <span className="highlight">Long-Term Partnership</span>{" "}
+                      — Beyond launch, we provide ongoing optimization, proactive monitoring, and strategic guidance to ensure sustainable success
                     </li>
                   </ul>
                 </TextContent>
