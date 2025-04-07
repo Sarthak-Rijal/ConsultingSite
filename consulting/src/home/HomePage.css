@@ -1657,3 +1657,11 @@ div[ref="testimonialsRef"] {
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
 }
 
+.testimonials-section {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+

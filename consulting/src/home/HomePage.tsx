@@ -246,9 +246,6 @@ export function HomePage(): React.ReactElement {
                     </li>
                   </ul>
                 </TextContent>
-                <div className="cta-buttons right-aligned">
-                  <Button variant="primary">Schedule a Consultation</Button>
-                </div>
               </SpaceBetween>
             </div>
           </Grid>
@@ -310,8 +307,8 @@ export function HomePage(): React.ReactElement {
       </div>
 
       {/* Testimonials */}
-      <div ref={testimonialsRef}>
-        <h2 className="section-title">Client Experiences</h2>
+      <div ref={testimonialsRef} className="testimonials-section">
+        <h2 className="section-title text-center">Client Experiences</h2>
         <Container
           className={`testimonials-container ${sectionsInView.testimonials ? "in-view" : "scroll-animate"}`}
         >
