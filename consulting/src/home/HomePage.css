@@ -191,7 +191,17 @@
 
 /* Projects section */
 .projects-container {
-  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 0;
+  position: relative;
+  padding: 0;
+  min-height: 450px; /* Adjust based on your content's typical height */
+  background-color: transparent; /* Ensure container has no background */
 }
 
 .project-card {
@@ -707,60 +717,12 @@
 }
 
 /* Updated light bulb ASCII art styling */
-.lightbulb-art {
-  font-family: monospace;
-  font-size: 0.8rem;
-  line-height: 1.2;
-  color: #9ca3af; /* Darker gray for the bulb when not lit */
-  white-space: pre;
-  margin: 0 auto;
-  margin-top: -1rem;
-  opacity: 0.8;
-  transition: all 0.5s ease;
-  position: absolute;
-  bottom: -8em; /* Adjusted for the new art */
-  left: 50%;
-  transform: translateX(-50%) scale(0.9);
-}
+/* Remove all lightbulb-art styles */
+/* Create pulsating animation for the lightbulb */
+/* Remove all lightbulbPulsate keyframes */
+/* Adjust the lightbulb art container position if needed */
+/* Remove ascii-art-container related to lightbulb if any */
 
-/* Light bulb lighting up effect with filament focus */
-.ascii-art-container:hover .lightbulb-art {
-  color: #fef3c7; /* Warm light bulb color */
-  text-shadow: 
-    0 0 10px rgba(251, 191, 36, 0.8),
-    0 0 20px rgba(251, 191, 36, 0.6),
-    0 0 30px rgba(251, 191, 36, 0.4);
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-}
-
-/* Special styling for the filament part (\~/) */
-.ascii-art-container:hover .lightbulb-art .filament {
-  color: #f59e0b; /* Brighter amber for the filament */
-  text-shadow: 
-    0 0 15px rgba(251, 191, 36, 1),
-    0 0 25px rgba(251, 191, 36, 0.8),
-    0 0 35px rgba(251, 191, 36, 0.6);
-}
-
-/* Adjust the glow effect to be on top of the bulb */
-.ascii-art-container:hover::after {
-  content: '';
-  position: absolute;
-  bottom: -8em; /* Move it lower to position it directly below the bulb */
-  left: 50%;
-  width: 120px; /* Adjust width as needed */
-  height: 120px; /* Adjust height as needed */
-  background: radial-gradient(
-    circle, 
-    rgba(254, 243, 199, 0.3) 0%,
-    rgba(251, 191, 36, 0.2) 40%,
-    rgba(251, 191, 36, 0) 70%
-  );
-  border-radius: 50%;
-  z-index: 1; /* Ensure it is above the bulb */
-  transform: translateX(-50%); /* Center it horizontally */
-}
 
 /* Override primary button colors */
 button[data-variant="primary"],
@@ -1180,8 +1142,9 @@ h2, h3 {
   font-size: 2rem;
   position: relative;
   display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  left: auto;
+  transform: none;
+  width: auto;
 }
 
 .section-title::after {
@@ -1248,4 +1211,449 @@ h2, h3 {
 
 .cta-buttons button[data-variant="primary"] {
   animation: ctaPulse 2s infinite;
-} 
+}
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    color: #333;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.text-container {
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*.icon-container { // Remove icon container styles*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.light-bulb-icon { // Remove light bulb icon styles*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    fill: #ffcc00;*/
+/*}*/
+
+/* Projects section with external navigation */
+.projects-navigation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  gap: 0.5rem; /* Reduce gap between elements */
+}
+
+/* Set project container to take up appropriate space */
+.projects-container {
+  flex: 1;
+  max-width: calc(1200px - 300px);
+  margin: 0 auto;
+  padding: 0;
+  min-height: 450px;
+  background-color: transparent; /* Ensure container has no background */
+}
+
+/* Remove custom pagination button styles that are no longer needed */
+.pagination-button.cloudscape-button {
+  width: auto;
+  height: auto;
+  font-size: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin: 0 0.5rem; /* Add small horizontal margin */
+  background: none; /* Remove custom background to use Cloudscape defaults */
+  border: none; /* Remove custom border to use Cloudscape defaults */
+}
+
+/* Remove all the custom hover effects */
+.pagination-button.cloudscape-button:hover:not(:disabled) {
+  transform: none;
+  background: none;
+  border: none;
+}
+
+/* Clear out all the old pagination controls */
+.pagination-controls {
+  display: none; /* Hide the old pagination controls completely */
+}
+
+/* Existing styles for project card */
+.paginated-project-card {
+  background-color: transparent; /* Change from #1f2937 to transparent */
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 2rem;
+  margin-bottom: 0;
+  box-shadow: none; /* Remove the box shadow */
+  border: none; /* Remove the border */
+  text-align: left;
+  width: 100%;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.project-card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.project-text-content {
+  background-color: transparent;
+  padding: 0;
+}
+
+.project-image-container {
+  border: none; /* Remove border from container */
+  border-radius: 8px;
+}
+
+.project-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: none;
+  border: none; /* Remove border from image */
+}
+
+.paginated-project-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.paginated-project-card:hover .project-hero-image {
+  transform: none; /* Remove scale effect */
+}
+
+.paginated-project-card h3 {
+  color: #f3f4f6;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.paginated-project-card p {
+  color: #e5e7eb;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1.5rem;
+}
+
+.project-actions a,
+.project-actions button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-actions a:hover,
+.project-actions button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
+}
+
+.pagination-controls {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin-top: 0;
+}
+
+.pagination-controls button:first-child {
+  margin-left: -2.5rem;
+  content: "←";
+}
+
+.pagination-controls button:last-child {
+  margin-right: -2.5rem;
+  content: "→";
+}
+
+.pagination-controls button {
+  font-size: 1.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 50%;
+  background-color: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.pagination-controls button:hover:enabled {
+  background-color: rgba(249, 115, 22, 0.2);
+  border-color: rgba(249, 115, 22, 0.6);
+  transform: translateY(-2px) scale(1.1);
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Remove the problematic pseudo-element causing the color change */
+.paginated-project-card::before {
+  display: none; /* This will prevent the pseudo-element from showing */
+}
+
+/* Center the section titles */
+.our-approach-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  text-align: center;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+/* Target the testimonials section container (parent of Client Experiences title) */
+div[ref="testimonialsRef"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* Update CSS for two-column project layout */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: #1f2937;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.1);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.client-name {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .project-card-content {
+    flex-direction: column;
+  }
+  
+  .project-text-content {
+    padding-right: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-image-container {
+    width: 100%;
+  }
+}
+
+/* Fix hover effect to prevent showing content underneath */
+.paginated-project-card {
+  /* Keep other styles */
+  transform: translateZ(0); /* Use hardware acceleration */
+}
+
+.paginated-project-card:hover {
+  /* Remove the translateY that's causing the issue */
+  transform: none; /* Remove the upward movement */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+/* Add a better hover effect that doesn't reveal anything underneath */
+.paginated-project-card {
+  position: relative;
+  overflow: visible; /* Allow shadow to extend outside */
+}
+
+.paginated-project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border-radius: 8px;
+  z-index: -1;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: none;
+}
+
+.paginated-project-card:hover::after {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+/* Simple, snappy animations for the pagination buttons */
+.pagination-button.cloudscape-button {
+  transition: transform 0.2s ease-out;
+}
+
+/* Hover effect - quick scaling */
+.pagination-button.cloudscape-button:not(:disabled):hover {
+  transform: scale(1.15);
+}
+
+/* Active effect - quick inward press */
+.pagination-button.cloudscape-button:not(:disabled):active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease-out;
+}
+
+/* Change icon color to match theme on hover/active */
+.pagination-button.cloudscape-button:not(:disabled):hover svg,
+.pagination-button.cloudscape-button:not(:disabled):active svg {
+  color: #f97316;
+}
+
+/* Make sure the buttons have a good size and clickable area */
+.projects-navigation-container Button.pagination-button {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 50%;
+}
+
+/* Add dissolve animation styles */
+.dissolve-out {
+  animation: dissolveOut 0.3s ease-out forwards;
+}
+
+.dissolve-in {
+  animation: dissolveIn 0.4s ease-in forwards;
+}
+
+/* Dissolve animation for pagination */
+@keyframes dissolveOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes dissolveIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Ensure the container maintains height during transitions */
+.projects-container {
+  min-height: 450px; /* Adjust based on your content's typical height */
+}
+
+/* Completely remove all hover effects from the Projects container */
+
+/* Remove card hover effects */
+.paginated-project-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+/* Remove after pseudo-element hover effects */
+.paginated-project-card::after {
+  display: none;
+}
+
+/* Remove any hover effects on the project content */
+.project-card-content:hover {
+  transform: none;
+}
+
+/* Make sure the text content doesn't have hover effects */
+.project-text-content:hover {
+  transform: none;
+  background-color: transparent;
+}
+
+/* Remove image container hover effects */
+.project-image-container:hover {
+  transform: none;
+  border-color: transparent !important;
+}
+
+/* Remove image hover effects */
+.project-hero-image:hover {
+  transform: none;
+}
+
+/* Override any other hover effects with !important */
+.paginated-project-card *:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+/* Exception for the Demo button which should keep its hover effect */
+.project-actions a:hover,
+.project-actions button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(249, 115, 22, 0.2) !important;
+}
+

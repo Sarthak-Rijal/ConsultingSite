@@ -35,6 +35,9 @@ export function HomePage(): React.ReactElement {
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   // Trigger initial animations after component mounts
   useEffect(() => {
     setAnimationsLoaded(true);
@@ -81,24 +84,36 @@ export function HomePage(): React.ReactElement {
   // Sample projects for the showcase section
   const projects = [
     {
-      title: "Deep Dive on Business Needs",
+      title: "AI-Powered Document Summarization",
       description:
-        "We start by thoroughly understanding your business challenges, goals, and requirements before proposing any technical solutions. This foundation ensures we build exactly what you need.",
+        "Developed an AI model that automatically summarizes lengthy documents into concise summaries, improving information accessibility and workflow efficiency for legal and research teams. Our solution uses advanced NLP techniques to identify key information and maintain context while reducing document length by up to 85%.",
+      demoUrl: "#document-summarization-demo", // Stub URL
+      imageUrl:
+        "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", // Example image URL
     },
     {
-      title: "Implement & Continuously Iterate",
+      title: "Predictive Maintenance for Industrial Equipment",
       description:
-        "Our agile development process delivers working solutions quickly, then refines them based on your feedback. This iterative approach ensures the final product perfectly aligns with your evolving needs.",
+        "Implemented a predictive maintenance system using machine learning to analyze sensor data from industrial equipment, predicting potential failures and reducing downtime. By combining real-time monitoring with historical analysis, we've helped clients achieve a 75% reduction in unexpected equipment failures.",
+      demoUrl: "#predictive-maintenance-demo", // Stub URL
+      imageUrl:
+        "https://images.unsplash.com/photo-1581092921461-7d65ca45c268?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", // Example image URL
     },
     {
-      title: "User Metrics & Service Health",
+      title: "Personalized Learning Platform",
       description:
-        "We implement comprehensive analytics and monitoring systems that provide real-time insights into user behavior and system performance, helping you make data-driven decisions.",
+        "Created a personalized learning platform driven by AI, adapting educational content to individual student needs and learning styles, enhancing engagement and learning outcomes. Our adaptive algorithm continuously refines content delivery based on performance metrics and interaction patterns.",
+      demoUrl: "#personalized-learning-demo", // Stub URL
+      imageUrl:
+        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", // Example image URL
     },
     {
-      title: "Proactive Support & Development",
+      title: "AI-Driven Customer Service Chatbot",
       description:
-        "Our relationship doesn't end at deployment. We provide ongoing maintenance, proactive error monitoring, and continuous improvements to ensure your solution evolves with your business.",
+        "Built an intelligent chatbot for customer service using natural language processing, providing instant support, answering frequently asked questions, and improving customer satisfaction. Our solution integrates with existing knowledge bases and can handle complex, multi-turn conversations.",
+      demoUrl: "#chatbot-demo", // Stub URL
+      imageUrl:
+        "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", // Example image URL
     },
   ];
 
@@ -119,6 +134,28 @@ export function HomePage(): React.ReactElement {
       image: gandalf,
     },
   ];
+
+  const currentProject = projects[currentPageIndex];
+  const isFirstPage = currentPageIndex === 0;
+  const isLastPage = currentPageIndex === projects.length - 1;
+
+  const handlePrevious = () => {
+    if (isFirstPage || isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentPageIndex(currentPageIndex - 1);
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 300); // Match this with the CSS animation duration
+  };
+
+  const handleNext = () => {
+    if (isLastPage || isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentPageIndex(currentPageIndex + 1);
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 300); // Match this with the CSS animation duration
+  };
 
   return (
     <ContentLayout>
@@ -156,14 +193,6 @@ export function HomePage(): React.ReactElement {
  ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝    
 `}
                 </pre>
-                <pre className="lightbulb-art">
-                  {`
-     :
- '.  _  .'
--=  (~)  =-   
- .'  #  '.
-  `}
-                </pre>
                 {/* eslint-enable no-useless-escape */}
               </div>
             </div>
@@ -173,47 +202,47 @@ export function HomePage(): React.ReactElement {
               <SpaceBetween size="l">
                 <TextContent>
                   <p className="hero-description">
-                    Founded by a team of senior engineers with 10+ years of
-                    experience at Meta, Amazon, Apple, Netflix, and Google, we
-                    bring Silicon Valley expertise to your business challenges.
-                    Our collective experience spans AI infrastructure, cloud
-                    architecture, and enterprise-scale applications that serve
-                    millions of users daily. We don&#39;t just write code — we
-                    craft solutions that delight users while driving measurable
-                    business outcomes.
+                    We are a team of seasoned software engineers dedicated to
+                    crafting bespoke AI solutions for your business. With over
+                    10 years of industry experience, we specialize in
+                    developing, deploying, and maintaining cutting-edge AI
+                    applications, including Retrieval-Augmented Generation (RAG)
+                    systems, fine-tuned models, and intelligent agents with tool
+                    calling capabilities. Let us help you leverage the power of
+                    AI to drive innovation and efficiency in your organization.
                   </p>
 
                   <h2 className="tenets-header">
                     <span className="highlight">Our</span>{" "}
-                    <span className="highlight">Tenets</span>
+                    <span className="highlight">Core Principles</span>
                   </h2>
 
                   <ul className="hero-list">
                     <li>
-                      <span className="highlight">
-                        Relentless Customer Focus
-                      </span>{" "}
-                      — We start with your business needs and work backwards,
-                      ensuring every line of code drives value for your users
-                      and your bottom line
+                      <span className="highlight">Client-Centric Approach</span>{" "}
+                      — We prioritize understanding your unique business
+                      objectives and challenges to deliver AI solutions that are
+                      perfectly aligned with your strategic goals.
                     </li>
                     <li>
-                      <span className="highlight">Technical Excellence</span> —
-                      Leveraging MAANG-level engineering practices: robust
-                      architecture, comprehensive testing, and scalable
-                      infrastructure that grows with your business
+                      <span className="highlight">Engineering Excellence</span>{" "}
+                      — We adhere to the highest standards of software
+                      engineering, ensuring robust, scalable, and maintainable
+                      AI systems through rigorous testing and best practices.
                     </li>
                     <li>
-                      <span className="highlight">Human-Centered Design</span> —
-                      Creating intuitive, delightful interfaces that users love,
-                      combining data-driven insights with thoughtful interaction
-                      design
+                      <span className="highlight">User-Focused Design</span> —
+                      We are committed to creating intuitive and effective user
+                      experiences, ensuring that our AI solutions are not only
+                      powerful but also user-friendly and seamlessly integrated
+                      into your workflows.
                     </li>
                     <li>
-                      <span className="highlight">Long-Term Partnership</span> —
-                      Beyond launch, we provide ongoing optimization, proactive
-                      monitoring, and strategic guidance to ensure sustainable
-                      success
+                      <span className="highlight">Sustainable Partnership</span>{" "}
+                      — Our commitment extends beyond initial deployment. We
+                      offer continuous support, proactive monitoring, and
+                      ongoing development to ensure the long-term success and
+                      evolution of your AI investments.
                     </li>
                   </ul>
                 </TextContent>
@@ -227,32 +256,57 @@ export function HomePage(): React.ReactElement {
       </div>
 
       {/* Featured Projects/Services */}
-      <div ref={projectsRef}>
-        <h2 className="section-title">Our Approach</h2>
-        <Container
-          className={`projects-container ${sectionsInView.projects ? "in-view" : "scroll-animate"}`}
-        >
-          <Grid
-            gridDefinition={[
-              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-              { colspan: { default: 12, xxs: 12, xs: 6, m: 3 } },
-            ]}
+      <div ref={projectsRef} className="our-approach-section">
+        <h2 className="section-title">Projects</h2>
+
+        <div className="projects-navigation-container">
+          <Button
+            className="pagination-button cloudscape-button"
+            disabled={isFirstPage || isTransitioning}
+            variant="inline-icon"
+            iconName="angle-left"
+            onClick={handlePrevious}
           >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className={`service-project-card ${sectionsInView.projects ? `animate-project-${index + 1}` : ""}`}
-              >
-                <div className="service-project-content">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+            Previous
+          </Button>
+
+          <div
+            className={`projects-container ${sectionsInView.projects ? "in-view" : "scroll-animate"}`}
+          >
+            <div
+              className={`paginated-project-card ${isTransitioning ? "dissolve-out" : "dissolve-in"}`}
+            >
+              <div className="project-card-content">
+                <div className="project-text-content">
+                  <h3>{currentProject.title}</h3>
+                  <p>{currentProject.description}</p>
+                  <div className="project-actions">
+                    <Button href={currentProject.demoUrl} variant="primary">
+                      Demo
+                    </Button>
+                  </div>
+                </div>
+                <div className="project-image-container">
+                  <img
+                    src={currentProject.imageUrl}
+                    alt={currentProject.title}
+                    className="project-hero-image"
+                  />
                 </div>
               </div>
-            ))}
-          </Grid>
-        </Container>
+            </div>
+          </div>
+
+          <Button
+            className="pagination-button cloudscape-button"
+            disabled={isLastPage || isTransitioning}
+            variant="inline-icon"
+            iconName="angle-right"
+            onClick={handleNext}
+          >
+            Next
+          </Button>
+        </div>
       </div>
 
       {/* Testimonials */}
